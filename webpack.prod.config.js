@@ -10,7 +10,8 @@ export default base({
   mode: 'production',
 
   entry: [
-    require.resolve('react-app-polyfill/ie11'),
+    '@babel/polyfill',
+    'react-app-polyfill/ie11',
     path.join(process.cwd(), 'src/index.js'),
   ],
 

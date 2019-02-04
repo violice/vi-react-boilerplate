@@ -1,5 +1,6 @@
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import { DefinePlugin } from 'webpack';
 
 import base from './webpack.base.config';
 
@@ -7,7 +8,8 @@ export default base({
   mode: 'development',
 
   entry: [
-    require.resolve('react-app-polyfill/ie11'),
+    '@babel/polyfill',
+    'react-app-polyfill/ie11',
     path.join(process.cwd(), 'src/index.js'),
   ],
 
@@ -26,6 +28,9 @@ export default base({
     new HtmlWebpackPlugin({
       inject: true,
       template: './src/index.html',
+    }),
+    new DefinePlugin({
+      BASE_API_PATH: JSON.stringify(''),
     }),
   ],
 

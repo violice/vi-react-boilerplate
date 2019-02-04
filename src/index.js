@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import App from 'app/App.js';
+
 ReactDOM.render(
-  <div>vi-react-boilerplate</div>,
+  <App />,
   document.getElementById('root'),
 );
