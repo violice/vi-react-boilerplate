@@ -1,6 +1,6 @@
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import { HashedModuleIdsPlugin } from 'webpack';
+import { HashedModuleIdsPlugin, DefinePlugin } from 'webpack';
 import TerserPlugin from 'terser-webpack-plugin';
 import CompressionPlugin from 'compression-webpack-plugin';
 
@@ -97,6 +97,10 @@ export default base({
       hashFunction: 'sha256',
       hashDigest: 'hex',
       hashDigestLength: 20,
+    }),
+
+    new DefinePlugin({
+      BASE_API_PATH: JSON.stringify(''),
     }),
   ],
 

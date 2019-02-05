@@ -29,12 +29,17 @@ export default base({
       inject: true,
       template: './src/index.html',
     }),
+
     new DefinePlugin({
       BASE_API_PATH: JSON.stringify(''),
     }),
   ],
 
   devtool: 'eval-source-map',
+
+  devServer: {
+    historyApiFallback: true,
+  },
 
   performance: {
     hints: false,

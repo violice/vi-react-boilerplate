@@ -8,6 +8,7 @@ export default ({
   optimization,
   plugins,
   devtool,
+  devServer,
   performance,
 }) => ({
   mode,
@@ -63,6 +64,8 @@ export default ({
   },
 
   devtool,
+
+  devServer,
 
   target: 'web',
 
