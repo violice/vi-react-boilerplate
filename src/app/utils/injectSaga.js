@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 export default (key, saga) => (WrappedComponent) => {
-  class WithSaga extends Component {
+  class SagaInjector extends Component {
     componentWillMount() {
       const {
         store: {
@@ -26,9 +26,9 @@ export default (key, saga) => (WrappedComponent) => {
     }
   }
 
-  WithSaga.contextTypes = {
+  SagaInjector.contextTypes = {
     store: PropTypes.shape({}),
   };
 
-  return WithSaga;
+  return SagaInjector;
 };

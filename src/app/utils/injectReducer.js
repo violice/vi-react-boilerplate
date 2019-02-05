@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 export default (key, reducer) => (WrappedComponent) => {
-  class WithReducer extends Component {
+  class ReducerInjector extends Component {
     componentWillMount() {
       const {
         store: {
@@ -17,9 +17,9 @@ export default (key, reducer) => (WrappedComponent) => {
     }
   }
 
-  WithReducer.contextTypes = {
+  ReducerInjector.contextTypes = {
     store: PropTypes.object.isRequired,
   };
 
-  return WithReducer;
+  return ReducerInjector;
 };
