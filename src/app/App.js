@@ -3,9 +3,9 @@ import { ThemeProvider } from 'styled-components';
 import { Provider } from 'react-redux';
 import { createBrowserHistory } from 'history';
 import { ConnectedRouter } from 'connected-react-router';
-import { Switch, Route } from 'react-router-dom';
 import { createStore } from 'utils';
 import { theme, GlobalStyle } from 'theme';
+import Routes from './Routes';
 
 const history = createBrowserHistory();
 const store = createStore(history);
@@ -17,9 +17,7 @@ class App extends Component {
         <Fragment>
           <Provider store={store}>
             <ConnectedRouter history={history}>
-              <Switch>
-                <Route exact path="/" render={() => <div>/root</div>} />
-              </Switch>
+              {Routes()}
             </ConnectedRouter>
           </Provider>
           <GlobalStyle />

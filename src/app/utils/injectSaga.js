@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { ReactReduxContext } from 'react-redux';
 
 export default (key, saga) => (WrappedComponent) => {
   class SagaInjector extends Component {
-    componentWillMount() {
+    static contextType = ReactReduxContext;
+
+    constructor(props, context) {
+      super(props, context);
       const {
         store: {
           injectSaga,
@@ -25,10 +28,6 @@ export default (key, saga) => (WrappedComponent) => {
       return <WrappedComponent {...this.props} />;
     }
   }
-
-  SagaInjector.contextTypes = {
-    store: PropTypes.shape({}),
-  };
 
   return SagaInjector;
 };
