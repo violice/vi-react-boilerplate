@@ -1,7 +1,10 @@
+import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+
+import Feature from 'Feature';
 
 export default () => (
   <Switch>
-    <Route exact path="/" render={() => <div>/root</div>} />
+    <Route exact path="/" component={Feature} />
   </Switch>
 );
