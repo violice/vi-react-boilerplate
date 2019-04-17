@@ -4,7 +4,7 @@ import logger from 'redux-logger';
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { routerMiddleware } from 'connected-react-router';
-import { createRootReducer } from 'utils';
+import reducers from 'reducers';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -27,7 +27,7 @@ export default (history) => {
   }
 
   const store = createStore(
-    createRootReducer(history),
+    reducers(history),
     composeEnhancers(
       applyMiddleware(...middlewares),
     ),
@@ -39,7 +39,7 @@ export default (history) => {
 
   store.injectReducer = (key, reducer) => {
     store.injectedReducers[key] = reducer;
-    store.replaceReducer(createRootReducer(history, store.injectedReducers));
+    store.replaceReducer(reducers(history, store.injectedReducers));
   };
 
   store.injectSaga = (key, saga) => {
