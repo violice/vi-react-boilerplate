@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { LoadingIndicator } from 'components';
 import { Route, Redirect } from 'react-router-dom';
-import { APP_STORE_KEY } from 'App/constants';
+
+import { LoadingIndicator } from 'components';
+import { KEY } from 'containers/App/constants';
 
 
 const WithAuth = ({
@@ -44,7 +45,7 @@ WithAuth.defaultProps = {
   render: null,
 };
 
-const mapStateToProps = ({ [APP_STORE_KEY]: { loading, user } }) => ({ loading, user });
+const mapStateToProps = ({ [KEY]: { loading, user } }) => ({ loading, user });
 
 const withConnect = connect(mapStateToProps);
 

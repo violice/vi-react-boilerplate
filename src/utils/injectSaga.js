@@ -1,14 +1,24 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { ReactReduxContext } from 'react-redux';
+import hoistNonReactStatics from 'hoist-non-react-statics';
 
 export default (key, saga) => (WrappedComponent) => {
   class SagaInjector extends Component {
-    componentWillMount() {
+    static WrappedComponent = WrappedComponent;
+
+    static contextType = ReactReduxContext;
+
+    static displayName = `withSaga(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`;
+
+    constructor(props, context) {
+      super(props, context);
+
       const {
         store: {
           injectSaga,
         },
-      } = this.context;
+      } = context;
+
       injectSaga(key, saga);
     }
 
@@ -26,9 +36,5 @@ export default (key, saga) => (WrappedComponent) => {
     }
   }
 
-  SagaInjector.contextTypes = {
-    store: PropTypes.shape({}),
-  };
-
-  return SagaInjector;
+  return hoistNonReactStatics(SagaInjector, WrappedComponent);
 };

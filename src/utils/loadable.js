@@ -1,9 +1,10 @@
 import React, { lazy, Suspense } from 'react';
+import { LoadingIndicator } from 'components/Common';
 
-export default (importFunc, { fallback = null } = { fallback: null }) => {
+export default (importFunc) => {
   const LazyComponent = lazy(importFunc);
   return props => (
-    <Suspense fallback={fallback}>
+    <Suspense fallback={<LoadingIndicator />}>
       <LazyComponent {...props} />
     </Suspense>
   );

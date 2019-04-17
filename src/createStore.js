@@ -47,11 +47,7 @@ export default (history) => {
   };
 
   store.ejectSaga = (key) => {
-    const saga = store.injectedSagas[key];
-    saga.task.cancel();
-    if (process.env.NODE_ENV === 'production') {
-      store.injectedSagas[key] = 'done';
-    }
+    store.injectedSagas[key].task.cancel();
   };
 
   return store;

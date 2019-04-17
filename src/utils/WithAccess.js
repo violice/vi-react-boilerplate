@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
-import { APP_STORE_KEY } from 'App/constants';
 
+import { KEY } from 'containers/App/constants';
 
 const WithAccess = ({
   component: WrappedComponent,
@@ -38,7 +38,7 @@ WithAccess.defaultProps = {
   render: null,
 };
 
-const mapStateToProps = ({ [APP_STORE_KEY]: { user } }) => ({ user });
+const mapStateToProps = ({ [KEY]: { user } }) => ({ user });
 
 const withConnect = connect(mapStateToProps);
 
