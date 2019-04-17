@@ -8,7 +8,7 @@ export default class Api {
       return '';
     }
     const stringParams = Object.keys(params)
-      .map((key) => `${key}=${params[key]}`)
+      .map(key => `${key}=${params[key]}`)
       .join('&');
     return `?${stringParams}`;
   }

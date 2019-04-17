@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 
-import { LoadingIndicator } from 'components';
+import { LoadingIndicator } from 'components/Common';
 import { KEY } from 'containers/App/constants';
-
 
 const WithAuth = ({
   component: WrappedComponent,
