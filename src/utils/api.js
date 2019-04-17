@@ -35,7 +35,7 @@ export default class Api {
         const { status, data: { error, message } } = response;
         throw { code: status, message: error || message };
       }
-      throw { message: 'Сервер недоступен' };
+      throw { message: 'Server unavailable' };
     }
   }
 
@@ -51,7 +51,7 @@ export default class Api {
         const { status, data: { error, message } } = response;
         throw { code: status, message: error || message };
       }
-      throw { message: 'Сервер недоступен' };
+      throw { message: 'Server unavailable' };
     }
   }
 
@@ -67,7 +67,7 @@ export default class Api {
         const { status, data: { error, message } } = response;
         throw { code: status, message: error || message };
       }
-      throw { message: 'Сервер недоступен' };
+      throw { message: 'Server unavailable' };
     }
   }
 
@@ -83,7 +83,7 @@ export default class Api {
         const { status, data: { error, message } } = response;
         throw { code: status, message: error || message };
       }
-      throw { message: 'Сервер недоступен' };
+      throw { message: 'Server unavailable' };
     }
   }
 }
