@@ -1,4 +1,4 @@
-import axios from 'axios';
+import Axios from 'axios';
 
 const baseUrl = BASE_API_PATH; //eslint-disable-line
 
@@ -28,7 +28,7 @@ export default class Api {
     params,
   ) {
     try {
-      const { data } = await axios.get(`${baseUrl}/${url}${Api.createStringParams(params)}`, Api.makeConfig());
+      const { data } = await Axios.get(`${baseUrl}/${url}${Api.createStringParams(params)}`, Api.makeConfig());
       return data;
     } catch ({ response }) {
       if (response) {
@@ -44,7 +44,7 @@ export default class Api {
     body,
   ) {
     try {
-      const { data } = await axios.post(`${baseUrl}/${url}`, body, Api.makeConfig());
+      const { data } = await Axios.post(`${baseUrl}/${url}`, body, Api.makeConfig());
       return data;
     } catch ({ response }) {
       if (response) {
@@ -60,7 +60,7 @@ export default class Api {
     body,
   ) {
     try {
-      const { data } = await axios.patch(`${baseUrl}/${url}`, body, Api.makeConfig());
+      const { data } = await Axios.patch(`${baseUrl}/${url}`, body, Api.makeConfig());
       return data;
     } catch ({ response }) {
       if (response) {
@@ -76,7 +76,7 @@ export default class Api {
     id,
   ) {
     try {
-      const { data } = await axios.delete(`${baseUrl}/${url}/${id}`, Api.makeConfig());
+      const { data } = await Axios.delete(`${baseUrl}/${url}/${id}`, Api.makeConfig());
       return data;
     } catch ({ response }) {
       if (response) {
