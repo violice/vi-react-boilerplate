@@ -2,88 +2,65 @@ import Axios from 'axios';
 
 const baseUrl = BASE_API_PATH; //eslint-disable-line
 
-export default class Api {
-  static createStringParams(params = {}) {
-    if (Object.keys(params).length === 0) {
-      return '';
-    }
-    const stringParams = Object.keys(params)
-      .map(key => `${key}=${params[key]}`)
-      .join('&');
-    return `?${stringParams}`;
+const createStringParams = (params = {}) => {
+  if (Object.keys(params).length === 0) {
+    return '';
   }
+  const stringParams = Object.keys(params)
+    .map(key => `${key}=${params[key]}`)
+    .join('&');
+  return `?${stringParams}`;
+};
 
-  static makeConfig(type = 'application/json') {
-    const token = localStorage.getItem('token');
-    return {
-      headers: {
-        'Content-Type': type,
-        'x-access-token': token,
-      },
-    };
+const makeConfig = (type = 'application/json') => {
+  const token = localStorage.getItem('token');
+  return {
+    headers: {
+      'Content-Type': type,
+      'x-access-token': token,
+    },
+  };
+};
+
+const throwError = (response) => {
+  if (response) {
+    const { status, data: { error, message } } = response;
+    throw { code: status, message: error || message };
   }
+  throw { message: 'Server unavailable' };
+};
 
-  static async get(
-    url,
-    params,
-  ) {
+export default {
+  get: async (url, params) => {
     try {
-      const { data } = await Axios.get(`${baseUrl}/${url}${Api.createStringParams(params)}`, Api.makeConfig());
+      const { data } = await Axios.get(`${baseUrl}/${url}${createStringParams(params)}`, makeConfig());
       return data;
     } catch ({ response }) {
-      if (response) {
-        const { status, data: { error, message } } = response;
-        throw { code: status, message: error || message };
-      }
-      throw { message: 'Server unavailable' };
+      return throwError(response);
     }
-  }
-
-  static async post(
-    url,
-    body,
-  ) {
+  },
+  post: async (url, body) => {
     try {
-      const { data } = await Axios.post(`${baseUrl}/${url}`, body, Api.makeConfig());
+      const { data } = await Axios.post(`${baseUrl}/${url}`, body, makeConfig());
       return data;
     } catch ({ response }) {
-      if (response) {
-        const { status, data: { error, message } } = response;
-        throw { code: status, message: error || message };
-      }
-      throw { message: 'Server unavailable' };
+      return throwError(response);
     }
-  }
-
-  static async patch(
-    url,
-    body,
-  ) {
+  },
+  patch: async (url, body) => {
     try {
-      const { data } = await Axios.patch(`${baseUrl}/${url}`, body, Api.makeConfig());
+      const { data } = await Axios.patch(`${baseUrl}/${url}`, body, makeConfig());
       return data;
     } catch ({ response }) {
-      if (response) {
-        const { status, data: { error, message } } = response;
-        throw { code: status, message: error || message };
-      }
-      throw { message: 'Server unavailable' };
+      return throwError(response);
     }
-  }
-
-  static async delete(
-    url,
-    id,
-  ) {
+  },
+  delete: async (url) => {
     try {
-      const { data } = await Axios.delete(`${baseUrl}/${url}/${id}`, Api.makeConfig());
+      const { data } = await Axios.delete(`${baseUrl}/${url}`, makeConfig());
       return data;
     } catch ({ response }) {
-      if (response) {
-        const { status, data: { error, message } } = response;
-        throw { code: status, message: error || message };
-      }
-      throw { message: 'Server unavailable' };
+      return throwError(response);
     }
-  }
-}
+  },
+};
