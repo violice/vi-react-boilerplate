@@ -54,7 +54,12 @@ export default base({
       cacheGroups: {
         commons: {
           test: /[\\/]node_modules[\\/]/,
-          name: 'vendor',
+          name(module) {
+            const packageName = module.context.match(
+              /[\\/]node_modules[\\/](.*?)([\\/]|$)/,
+            )[1];
+            return `vendor.${packageName.replace('@', '')}`;
+          },
           chunks: 'all',
         },
         main: {
