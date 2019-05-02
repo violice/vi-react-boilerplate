@@ -25,9 +25,11 @@ const makeConfig = (type = 'application/json') => {
 const throwError = (response) => {
   if (response) {
     const { status, data: { error, message } } = response;
-    throw { code: status, message: error || message };
+    const err = { code: status, message: error || message };
+    throw err;
   }
-  throw { message: 'Server unavailable' };
+  const err = { message: 'Server unavailable' };
+  throw err;
 };
 
 export default {

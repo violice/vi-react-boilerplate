@@ -10,7 +10,7 @@ export default base({
   entry: [
     '@babel/polyfill',
     'react-app-polyfill/ie11',
-    path.join(process.cwd(), 'src/index.js'),
+    path.join(process.cwd(), 'src/index.jsx'),
   ],
 
   output: {

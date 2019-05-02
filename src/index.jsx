@@ -6,8 +6,8 @@ import { createBrowserHistory } from 'history';
 import { ConnectedRouter } from 'connected-react-router';
 import { ThemeProvider } from 'styled-components';
 
-import createStore from 'createStore';
 import theme, { GlobalStyle, ThemeLogger } from 'theme';
+import createStore from 'createStore';
 
 import { App } from 'containers';
 
